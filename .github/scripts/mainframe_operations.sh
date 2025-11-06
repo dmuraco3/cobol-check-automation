@@ -37,25 +37,25 @@ run_cobolcheck() {
     java -jar ./cobolcheck -p $program
     echo "Cobolcheck execution completed for $program (exceptions may have occurred)"
     # Check if CC##99.CBL was created, regardless of cobolcheck exit status
-    if [ -f "CC##99.CBL" ]; then
+    if [ -f "testruns/CC##99.CBL" ]; then
         # Copy to the MVS dataset
-        if cp CC##99.CBL "//'${ZOWE_USERNAME}.CBL($program)'"; then
-            echo "Copied CC##99.CBL to ${ZOWE_USERNAME}.CBL($program)"
+        if cp testruns/CC##99.CBL "//'${ZOWE_USERNAME}.CBL($program)'"; then
+            echo "Copied testruns/CC##99.CBL to ${ZOWE_USERNAME}.CBL($program)"
         else
-            echo "Failed to copy CC##99.CBL to ${ZOWE_USERNAME}.CBL($program)"
+            echo "Failed to copy testruns/CC##99.CBL to ${ZOWE_USERNAME}.CBL($program)"
         fi
     else
-        echo "CC##99.CBL not found for $program"
+        echo "testruns/CC##99.CBL not found for $program"
     fi
     # Copy the JCL file if it exists
-    if [ -f "${program}.JCL" ]; then
-        if cp ${program}.JCL "//'${ZOWE_USERNAME}.JCL($program)'"; then
-            echo "Copied ${program}.JCL to ${ZOWE_USERNAME}.JCL($program)"
+    if [ -f "testruns/${program}.JCL" ]; then
+        if cp testruns/${program}.JCL "//'${ZOWE_USERNAME}.JCL($program)'"; then
+            echo "Copied testruns/${program}.JCL to ${ZOWE_USERNAME}.JCL($program)"
         else
-            echo "Failed to copy ${program}.JCL to ${ZOWE_USERNAME}.JCL($program)"
+            echo "Failed to copy testruns/${program}.JCL to ${ZOWE_USERNAME}.JCL($program)"
         fi
     else
-        echo "${program}.JCL not found"
+        echo "testruns/${program}.JCL not found"
     fi
 }
 

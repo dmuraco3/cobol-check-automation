@@ -1,2 +1,4 @@
 .env
 cobol-check/testruns
+.DS_Store
+**/.DS_Store
