@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Linux - compile and execute a test Cobol program
 #
 # Assumptions:

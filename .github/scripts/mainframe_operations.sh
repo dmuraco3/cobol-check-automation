@@ -14,11 +14,12 @@ java -version
 ZOWE_USERNAME="Z80937"
 
 # Change to the cobolcheck directory
-cd cobolcheck
+cd cobol-check
 echo "Changed to $(pwd)"
 ls -al
 
 # Make cobolcheck executable
+mv bin/cobol-check-0.2.19.jar ./cobolcheck
 chmod +x cobolcheck
 echo "Made cobolcheck executable"
 
@@ -33,7 +34,7 @@ run_cobolcheck() {
     program=$1
     echo "Running cobolcheck for $program"
     # Run cobolcheck, but don't exit if it fails
-    ./cobolcheck -p $program
+    java -jar ./cobolcheck -p $program
     echo "Cobolcheck execution completed for $program (exceptions may have occurred)"
     # Check if CC##99.CBL was created, regardless of cobolcheck exit status
     if [ -f "CC##99.CBL" ]; then
